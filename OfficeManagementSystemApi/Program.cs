@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OfficeManagementSystemApi.Data;
+using OfficeManagementSystemApi.Repositorys;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,8 @@ var connectionString =
 
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddScoped<IMyRepo, MyRepo>();
 
 var app = builder.Build();
 
